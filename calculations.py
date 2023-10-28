@@ -1,6 +1,6 @@
 from math import sin, cos, asin, sqrt, pow, pi
 
-def wind_correction_angle(v_w : float, w : float, d : float, v_a : float, angle_unit : str):
+def wind_correction_angle(v_w : float, w : float, d : float, v_a : float, angle_unit : str) -> float:
 
     """
 
@@ -19,17 +19,35 @@ def wind_correction_angle(v_w : float, w : float, d : float, v_a : float, angle_
     """
 
     if angle_unit == "degrees":
-        return asin(v_w * sin((w  - d) * pi / 180) / v_a) * 180 / pi
+        asin_param = v_w * sin((w  - d) * pi / 180) / v_a
+
+        if asin_param >= 0:
+            asin_param = min(asin_param, 1)
+        
+        else:
+
+            asin_param = max(asin_param, -1)
+            
+        return asin(asin_param) * 180 / pi
     
     elif angle_unit == "radians":
-        return asin(v_w * sin(w  - d) / v_a) 
+        asin_param = v_w * sin(w  - d) / v_a
+
+        if asin_param >= 0:
+            asin_param = min(asin_param, 1)
+        
+        else:
+
+            asin_param = max(asin_param, -1)
+            
+        return asin(asin_param) 
     
 
-def true_ground_speed(v_w : float, w : float, d : float, v_a : float, angle_unit : str):
+def true_ground_speed(v_w : float, w : float, d : float, v_a : float, angle_unit : str) -> float:
 
     """
 
-    returns the true ground speed
+    Returns the true ground speed
 
     v_w : wind speed
 
