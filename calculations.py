@@ -1,9 +1,21 @@
 from math import sin, cos, asin, sqrt, pow, pi
 
-def wind_correction_angle(v_w, w, d, v_a, angle_unit):
+def wind_correction_angle(v_w : float, w : float, d : float, v_a : float, angle_unit : str):
 
     """
-    Comment
+
+    Returns the wind correction angle in degrees or radians
+
+    v_w : wind speed
+
+    w : wind direction
+
+    d : desired course
+
+    v_a : true airspeed
+
+    angle_unit : degrees or radians
+
     """
 
     if angle_unit == "degrees":
@@ -13,10 +25,22 @@ def wind_correction_angle(v_w, w, d, v_a, angle_unit):
         return asin(v_w * sin(w  - d) / v_a) 
     
 
-def true_ground_speed(v_w, w, d, v_a, angle_unit):
+def true_ground_speed(v_w : float, w : float, d : float, v_a : float, angle_unit : str):
 
     """
-    Comment
+
+    returns the true ground speed
+
+    v_w : wind speed
+
+    w : wind direction
+
+    d : desired course
+
+    v_a : true airspeed
+
+    angle_unit : degrees or radians
+
     """
 
     delta_a = wind_correction_angle(v_w, w, d, v_a, angle_unit)
@@ -29,7 +53,3 @@ def true_ground_speed(v_w, w, d, v_a, angle_unit):
     
 
 
-
-print(wind_correction_angle(23, 90, 320, 100, "degrees"))
-
-print(true_ground_speed(23, 90, 320, 100, "degrees"))
