@@ -1,10 +1,10 @@
 from math import sin, cos, asin, sqrt, pow, pi
 
-def wind_correction_angle(v_w : float, w : float, d : float, v_a : float, angle_unit : str) -> float:
+def wind_correction_angle(v_w : float, w : float, d : float, v_a : float) -> float:
 
     """
 
-    Returns the wind correction angle in degrees or radians
+    Returns the wind correction angle in degrees
 
     v_w : wind speed
 
@@ -14,36 +14,28 @@ def wind_correction_angle(v_w : float, w : float, d : float, v_a : float, angle_
 
     v_a : true airspeed
 
-    angle_unit : degrees or radians
+    angle_unit : in degrees
 
     """
 
-    if angle_unit == "degrees":
-        asin_param = v_w * sin((w  - d) * pi / 180) / v_a
+   
 
-        if asin_param >= 0:
-            asin_param = min(asin_param, 1)
-        
-        else:
+    asin_param = v_w * sin((w  - d) * pi / 180) / v_a
 
-            asin_param = max(asin_param, -1)
-            
-        return asin(asin_param) * 180 / pi
+    print(asin_param)
+
+    if asin_param >= 0:
+        asin_param = min(asin_param, 1)
     
-    elif angle_unit == "radians":
-        asin_param = v_w * sin(w  - d) / v_a
+    else:
 
-        if asin_param >= 0:
-            asin_param = min(asin_param, 1)
+        asin_param = max(asin_param, -1)
         
-        else:
-
-            asin_param = max(asin_param, -1)
-            
-        return asin(asin_param) 
+    return asin(asin_param) * 180 / pi
     
 
-def true_ground_speed(v_w : float, w : float, d : float, v_a : float, angle_unit : str) -> float:
+
+def true_ground_speed(v_w : float, w : float, d : float, v_a : float) -> float:
 
     """
 
@@ -57,17 +49,12 @@ def true_ground_speed(v_w : float, w : float, d : float, v_a : float, angle_unit
 
     v_a : true airspeed
 
-    angle_unit : degrees or radians
+    angle_unit : in degrees
 
     """
 
-    delta_a = wind_correction_angle(v_w, w, d, v_a, angle_unit)
+    delta_a = wind_correction_angle(v_w, w, d, v_a)
 
-    if angle_unit == "degrees":
-        return sqrt(pow(v_a, 2) + pow(v_w, 2) - 2 * v_a * v_w * cos((d - w + delta_a) * pi / 180))
+    return sqrt(pow(v_a, 2) + pow(v_w, 2) - 2 * v_a * v_w * cos((d - w + delta_a) * pi / 180))
     
-    elif angle_unit == "radians":
-        return sqrt(pow(v_a, 2) + pow(v_w, 2) - 2 * v_a * v_w * cos(d - w + delta_a))
     
-
-

@@ -5,10 +5,10 @@ from backend import Backend
 
 class Ui(QtWidgets.QMainWindow):
 
-    def __init__(self, backend):
+    def __init__(self):
         super(Ui, self).__init__()
         uic.loadUi('mainwindow.ui', self)
-        self.backend = backend
+        self.backend = Backend()
         self.backend.return_values.connect(self.modify_text_boxes)
         self.connect_spinbox_signals()
         self.show()
@@ -23,16 +23,10 @@ class Ui(QtWidgets.QMainWindow):
     def spinbox_value_change(self):
         
         self.backend.calculate(self.wind_speed.value(), self.wind_direction.value(),
-                               self.desired_course.value(), self.true_airspeed.value(),
-                               "degrees")
+                               self.desired_course.value(), self.true_airspeed.value())
     
     def modify_text_boxes(self, delta_a, v_g):
 
-        self.wind_correction_angle.setPlainText(str(delta_a))
-        self.true_ground_speed.setPlainText(str(v_g))
+        self.wind_correction_angle.setPlainText(str(delta_a).replace('.', ','))
+        self.true_ground_speed.setPlainText(str(v_g).replace('.', ','))
         
-
-app = QtWidgets.QApplication(sys.argv)
-backend = Backend()
-window = Ui(backend)
-app.exec_()
