@@ -22,8 +22,6 @@ def wind_correction_angle(v_w : float, w : float, d : float, v_a : float) -> flo
 
     asin_param = v_w * sin((w  - d) * pi / 180) / v_a
 
-    print(asin_param)
-
     if asin_param >= 0:
         asin_param = min(asin_param, 1)
     

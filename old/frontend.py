@@ -24,7 +24,7 @@ class Ui(QtWidgets.QMainWindow):
         
         self.backend.calculate(self.wind_speed.value(), self.wind_direction.value(),
                                self.desired_course.value(), self.true_airspeed.value())
-        self.arrow.resize(21, int(self.wind_speed.value() // 3))
+    
     
     def modify_text_boxes(self, delta_a, v_g):
 
