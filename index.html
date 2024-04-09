@@ -1,8 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>E6B Flight Calculator</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<p>This is E6B-TEST.</p>
+
+
+<div >
+<svg class="wind">
+  <rect x="0" y="0" height="0"/>
+</svg>
+<svg class="course">
+  <rect x="0" y="0" height="0"/>
+</svg>
+</div>
+
+
+
+<form>
+
+    <label for="windSpeed">Wind Speed</label>
+    <input type="text" id="windSpeed" > 
+
+    <label for="windDirection">Wind Direction</label>
+    <input type="text" id="windDirection">
+
+    <label for="desiredCourse">Desired Course</label>
+    <input type="text" id="desiredCourse"> 
+
+    <label for="trueAirspeed">True Airspeed</label>
+    <input type="text" id="trueAirspeed">
+
+    <label for="windCorrectionAngle">Wind Correction Angle</label>
+    <input type="text" id="windCorrectionAngle">
+
+    <label for="trueGroundSpeed">True Ground Speed</label>
+    <input type="text" id="trueGroundSpeed">
+</form>
+
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js'></script><script  src="./script.js"></script>
+
 </body>
 </html>

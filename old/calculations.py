@@ -30,6 +30,7 @@ def wind_correction_angle(v_w : float, w : float, d : float, v_a : float) -> flo
         asin_param = max(asin_param, -1)
         
     return asin(asin_param) * 180 / pi
+
     
 
 
